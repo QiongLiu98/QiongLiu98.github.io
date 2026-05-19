@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { contentShell, pageMainY, detailHeroOuter } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import {
   blogPosts,
   formatBlogDate,
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   if (!post) return { title: "Blog" };
-  return {
+  return createPageMetadata({
     title: post.title,
     description: post.excerpt,
-  };
+    path: `/blog/${slug}`,
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

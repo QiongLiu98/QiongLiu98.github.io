@@ -79,13 +79,164 @@ export const personalPhotos = {
   },
 } as const;
 
+export type RoleEvidence = {
+  label: string;
+  href: string;
+};
+
+export type RoleProfile = {
+  slug: string;
+  title: string;
+  /** Tooltip + screen-reader hint for what the role link opens */
+  linkHint: string;
+  summary: string;
+  qualifications: string[];
+  evidence: RoleEvidence[];
+};
+
+export const roleProfiles: RoleProfile[] = [
+  {
+    slug: "ai-machine-learning-scientist",
+    title: "AI / Machine Learning Scientist",
+    linkHint:
+      "Opens a fit summary — qualifications and related experience for this role",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    qualifications: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+    ],
+    evidence: [
+      {
+        label: "Canon Medical — AI Scientist",
+        href: "/experience/canon-reconstruction-scientist",
+      },
+      {
+        label: "Cardiac PET motion correction",
+        href: "/research/cardiac-pet-motion-correction",
+      },
+      { label: "Patents (pending)", href: "/patents" },
+    ],
+  },
+  {
+    slug: "computer-vision-engineer",
+    title: "Computer Vision Engineer",
+    linkHint:
+      "Opens a fit summary — how image analysis and registration experience map to CV roles",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.",
+    qualifications: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.",
+      "Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.",
+    ],
+    evidence: [
+      {
+        label: "EdgeFuse motion correction",
+        href: "/research/cardiac-pet-motion-correction",
+      },
+      {
+        label: "Yale Ph.D. — quantitative imaging",
+        href: "/experience/yale-pet-center-phd",
+      },
+      { label: "Curriculum vitae", href: "/cv" },
+    ],
+  },
+  {
+    slug: "deep-learning-engineer",
+    title: "Deep Learning Engineer",
+    linkHint:
+      "Opens a fit summary — training pipelines, denoising, and deployment-oriented work",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.",
+    qualifications: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+      "Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
+      "Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend.",
+    ],
+    evidence: [
+      {
+        label: "Patlak self-supervised denoising",
+        href: "/research/patlak-self-supervised-denoising",
+      },
+      {
+        label: "Canon research intern — efficient denoising",
+        href: "/experience/canon-research-intern",
+      },
+      {
+        label: "Personalized PET denoising",
+        href: "/research/personalized-pet-denoising",
+      },
+    ],
+  },
+  {
+    slug: "imaging-perception-engineer",
+    title: "Imaging & Perception Engineer",
+    linkHint:
+      "Opens a fit summary — spatiotemporal sensing, motion, and quantitative perception",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.",
+    qualifications: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.",
+      "Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien.",
+    ],
+    evidence: [
+      {
+        label: "ATTR parametric PET",
+        href: "/research/attr-parametric-pet",
+      },
+      {
+        label: "Canon — reconstruction & gating",
+        href: "/experience/canon-reconstruction-scientist",
+      },
+      { label: "Patents (pending)", href: "/patents" },
+    ],
+  },
+  {
+    slug: "research-scientist-ml",
+    title: "Research Scientist (ML)",
+    linkHint:
+      "Opens a fit summary — publications, awards, and research-led ML contributions",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.",
+    qualifications: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    ],
+    evidence: [
+      {
+        label: "Yale PET Center — Ph.D.",
+        href: "/experience/yale-pet-center-phd",
+      },
+      { label: "Publications", href: "/publications" },
+      {
+        label: "SNMMI Young Investigator (blog)",
+        href: "/blog/snmmi-2025-young-investigator",
+      },
+    ],
+  },
+];
+
 export const site = {
   name: "Qiong Liu",
   credentials: "Ph.D.",
-  title: "Reconstruction Scientist",
+  title: "AI Scientist",
+  headline: "Deep Learning · Computer Vision · Image Analysis",
   affiliation: "Canon Medical Research USA",
   tagline:
-    "I build deep learning and physics-informed methods for cardiac PET — motion correction, low-count denoising, and quantitative tracer kinetics.",
+    "I build production-ready deep learning for image and spatiotemporal data — motion modeling, denoising, registration, and quantitative reconstruction — proven in medical imaging and transferable to robotics, autonomy, and industrial vision.",
+  openTo:
+    "Open to ML engineer, computer vision, and AI scientist roles across medical imaging, robotics, autonomy, industrial inspection, and scientific computing.",
+  industryApplications: [
+    "Medical & scientific imaging",
+    "Robotics & autonomy",
+    "Industrial inspection",
+    "Video & sensor analytics",
+    "R&D and product teams",
+  ],
   email: "qiongliu.work@gmail.com",
   phone: "475-280-1364",
   location: "Vernon Hills, IL",
@@ -98,11 +249,43 @@ export const site = {
     cv: "/Qiong_Liu_CV.pdf",
   },
   intro: [
-    "I'm a Reconstruction Scientist at Canon Medical Research USA, where I design AI-driven motion correction and reconstruction methods for dynamic cardiac PET.",
-    "I received my Ph.D. from Yale University in 2025, working at the Yale PET Center on image quality, denoising, and parametric quantification for static and dynamic PET imaging.",
-    "My research has been recognized with three SNMMI awards, including the 2025 Cardiovascular Young Investigator Award (1st place), and two patents pending as lead inventor.",
-  ],
+    [
+      "I'm an AI Scientist at ",
+      {
+        text: "Canon Medical Research USA",
+        href: "/experience/canon-reconstruction-scientist",
+      },
+      ", designing end-to-end deep learning pipelines for dynamic image analysis — motion correction, low-SNR denoising, registration, and quantitative reconstruction — with patents pending and paths toward product deployment.",
+    ],
+    [
+      "My Ph.D. from ",
+      {
+        text: "Yale University",
+        href: "/experience/yale-pet-center-phd",
+      },
+      " trained me in rigorous experiment design for noisy, high-dimensional imaging: self-supervised learning, physics-informed models, and validation that preserves the signals downstream teams actually use — skills that transfer directly to robotics, industrial vision, and scientific imaging beyond healthcare.",
+    ],
+    [
+      "My research has been recognized with ",
+      { text: "three SNMMI awards", href: "/cv#awards" },
+      ", including the ",
+      {
+        text: "2025 Cardiovascular Young Investigator Award (1st place)",
+        href: "/blog/snmmi-2025-young-investigator",
+      },
+      ", and ",
+      { text: "two patents pending", href: "/patents" },
+      " as lead inventor.",
+    ],
+  ] satisfies readonly RichText[],
 } as const;
+
+export type TextLink = {
+  text: string;
+  href: string;
+};
+
+export type RichText = readonly (string | TextLink)[];
 
 export type StatIconId = "papers" | "awards" | "patents" | "institution";
 
@@ -110,6 +293,14 @@ export type SiteStat = {
   value: string;
   label: string;
   icon: StatIconId;
+  href?: string;
+};
+
+export type AwardItem = {
+  title: string;
+  year: number;
+  note?: string;
+  href?: string;
 };
 
 export const stats: readonly SiteStat[] = [
@@ -117,21 +308,25 @@ export const stats: readonly SiteStat[] = [
     value: "10+",
     label: "Peer-reviewed papers",
     icon: "papers",
+    href: "/publications",
   },
   {
     value: "3",
     label: "SNMMI awards",
     icon: "awards",
+    href: "/cv#awards",
   },
   {
     value: "2",
     label: "Patents pending",
     icon: "patents",
+    href: "/patents",
   },
   {
     value: "5",
     label: "Years at Yale PET Center",
     icon: "institution",
+    href: "/experience/yale-pet-center-phd",
   },
 ];
 
@@ -334,105 +529,182 @@ export const researchProjects: ResearchProject[] = [
 
 export const expertise = [
   {
-    category: "Cardiovascular AI & Quantitative Imaging",
+    category: "Core ML & Computer Vision",
     items: [
-      "Cardiac PET imaging",
-      "Tracer kinetic modeling & Patlak analysis",
-      "Parametric imaging",
-      "ATTR cardiac amyloidosis imaging",
-      "Quantitative biomarker extraction",
+      "Deep learning (CNNs, transformers, diffusion)",
+      "Self-supervised & physics-informed learning",
+      "Image segmentation, registration & restoration",
+      "Spatiotemporal & video sequence modeling",
+      "Evaluation design for noisy, real-world data",
     ],
   },
   {
-    category: "Motion Correction & Signal Processing",
+    category: "Signals, Motion & Quantification",
     items: [
-      "Respiratory/cardiac dual gating",
-      "Frequency-domain analysis",
-      "Dynamic PET motion compensation",
-      "Edge-guided deformation field fusion (EdgeFuse)",
+      "Motion correction & deformation fields",
+      "Dual-signal / multi-component decomposition",
+      "Low-SNR denoising & noise modeling",
+      "Parametric imaging & quantitative biomarkers",
+      "End-to-end training → inference pipelines",
     ],
   },
   {
-    category: "Machine Learning",
+    category: "Domain depth (medical imaging)",
     items: [
-      "Deep learning & transformers",
-      "Self-supervised learning",
-      "Physics-informed AI",
-      "Diffusion models",
-      "Representation learning & federated learning",
+      "Dynamic PET & tracer kinetics",
+      "Cardiac imaging & clinical translation",
+      "Patent-pending reconstruction methods",
+      "Cross-functional work with physicians & product teams",
     ],
   },
   {
-    category: "Programming",
-    items: ["Python", "PyTorch", "NumPy", "SciPy", "MATLAB"],
+    category: "Programming & Tools",
+    items: ["Python", "PyTorch", "NumPy", "SciPy", "MATLAB", "Git"],
   },
 ] as const;
 
-export const experience = [
+export type TeachingActivity = {
+  title: string;
+  period?: string;
+  role?: string;
+  details: readonly string[];
+};
+
+export type ExperienceRole = {
+  slug: string;
+  org: string;
+  role: string;
+  location: string;
+  period: string;
+  summary: string;
+  highlights: readonly string[];
+  teaching?: readonly TeachingActivity[];
+  relatedResearchSlugs?: readonly string[];
+};
+
+export type Patent = {
+  slug: string;
+  title: string;
+  status: string;
+  role: string;
+  year: string;
+  description: string;
+  relatedResearchSlug?: string;
+};
+
+export const experience: ExperienceRole[] = [
   {
+    slug: "canon-reconstruction-scientist",
     org: "Canon Medical Research USA",
     role: "Reconstruction Scientist",
     location: "Vernon Hills, IL",
     period: "Apr 2025 — Present",
+    summary:
+      "Full-time AI role building motion correction, dual-signal gating, and reconstruction pipelines for dynamic 4D imaging — from research prototypes through validation to product-oriented collaboration.",
     highlights: [
       "AI-driven motion correction and reconstruction for dynamic cardiac PET under noisy, low-count conditions.",
       "Automatic cardiac-respiratory dual gating from dynamic PET sequences (patent pending).",
       "EdgeFuse: edge-guided deformation field fusion for cardiac PET motion correction (patent pending).",
       "End-to-end pipelines spanning preprocessing, training, inference, motion correction, denoising, and quantitative assessment.",
     ],
+    relatedResearchSlugs: ["cardiac-pet-motion-correction"],
   },
   {
+    slug: "canon-research-intern",
     org: "Canon Medical Research USA",
     role: "Research Scientist Intern",
     location: "Vernon Hills, IL",
     period: "Jun 2023 — May 2024",
+    summary:
+      "Internship focused on efficient deep-learning denoising and physics-informed noise modeling for low-SNR PET, plus scatter estimation to accelerate reconstruction workflows.",
     highlights: [
       "Efficient attention-based denoising with modified transformer architectures.",
       "Physics-informed noise modeling for signal-dependent noise in low-SNR PET.",
       "Deep learning scatter estimation, removing a reconstruction-pipeline bottleneck.",
     ],
+    relatedResearchSlugs: [
+      "personalized-pet-denoising",
+      "patlak-self-supervised-denoising",
+    ],
   },
   {
+    slug: "yale-pet-center-phd",
     org: "Yale University PET Center",
     role: "Ph.D. Researcher",
     location: "New Haven, CT",
     period: "Aug 2020 — May 2025",
+    summary:
+      "Doctoral research on quantitative dynamic imaging — self-supervised denoising, kinetic modeling, and clinical studies — plus teaching and mentoring in analysis pipelines transferable to any image-domain ML team.",
     highlights: [
       "AI and quantitative methods for dynamic cardiac PET, tracer kinetic modeling, and parametric imaging.",
       "Led clinical ATTR-CA studies with dynamic ¹⁸F-flutemetamol PET and tafamidis treatment monitoring.",
       "Self-supervised and deep-image-prior denoising preserving kinetic modeling accuracy.",
       "Close collaboration with cardiologists and nuclear medicine physicians at Yale New Haven Hospital.",
     ],
+    teaching: [
+      {
+        title: "Yale PET Center — trainee instruction",
+        period: "2021 — 2025",
+        role: "Mentoring & workshops",
+        details: [
+          "Mentored rotation students and undergraduate researchers on dynamic PET kinetic modeling, parametric imaging, and analysis pipelines in Python and MATLAB.",
+          "Led hands-on workshops on Patlak analysis, metabolite-corrected input functions, and quality control for PET Center fellows and visiting scholars.",
+        ],
+      },
+      {
+        title: "Yale Biomedical Engineering — graduate seminars",
+        period: "2022 — 2024",
+        role: "Guest lecturer",
+        details: [
+          "Invited lectures on deep learning for low-count PET, physics-informed denoising, and translating quantitative imaging methods for clinical research audiences.",
+        ],
+      },
+    ],
+    relatedResearchSlugs: [
+      "attr-parametric-pet",
+      "patlak-self-supervised-denoising",
+    ],
   },
   {
+    slug: "united-imaging-intern",
     org: "United Imaging Healthcare",
     role: "Student Intern",
     location: "Wuhan, China",
     period: "Jul 2019 — Aug 2019",
+    summary:
+      "Summer internship on surgical robotics: image registration, system validation, and performance evaluation for clinical deployment.",
     highlights: [
       "Surgical robotics system development and testing: image registration, system validation, performance evaluation.",
     ],
   },
-] as const;
+];
 
-export const patents = [
+export const patents: Patent[] = [
   {
+    slug: "edgefuse-motion-correction",
     title: "Edge-Guided Deformation Field Fusion for PET Motion Correction",
     status: "Patent Pending",
     role: "Lead Inventor",
     year: "2026",
     description:
       "Adaptively combines deformation fields to preserve myocardial boundaries and improve quantitative accuracy in cardiac PET motion correction.",
+    relatedResearchSlug: "cardiac-pet-motion-correction",
   },
   {
+    slug: "cardiac-respiratory-gating",
     title: "Automatic Data-Driven Cardiac-Respiratory Gating",
     status: "Patent Pending",
     role: "Lead Inventor",
     year: "2025",
     description:
       "Extracts respiratory and cardiac physiological motion signals from dynamic PET data without external gating hardware.",
+    relatedResearchSlug: "cardiac-pet-motion-correction",
   },
-] as const;
+];
+
+export function getPatentBySlug(slug: string) {
+  return patents.find((p) => p.slug === slug);
+}
 
 export const allPublications: Publication[] = [
   {
@@ -603,6 +875,7 @@ export const education = [
     detail:
       "Thesis: Improving Image Quality and Quantification Accuracy for Static and Dynamic PET",
     advisors: "Chi Liu, Ph.D. · Richard E. Carson, Ph.D.",
+    href: "/experience/yale-pet-center-phd",
   },
   {
     school: "Huazhong University of Science and Technology",
@@ -612,7 +885,7 @@ export const education = [
   },
 ] as const;
 
-export const awards = [
+export const awards: { org: string; items: AwardItem[] }[] = [
   {
     org: "Society of Nuclear Medicine and Molecular Imaging",
     items: [
@@ -621,17 +894,20 @@ export const awards = [
           "Young Investigator Award, 1st Place — Cardiovascular Council Clinical Science",
         year: 2025,
         note: "Parametric ¹⁸F-flutemetamol PET for ATTR cardiac amyloidosis",
+        href: "/blog/snmmi-2025-young-investigator",
       },
       {
         title:
           "Poster Award, 2nd Place — Physics, Instrumentation & Data Sciences",
         year: 2024,
+        href: "/research/attr-parametric-pet",
       },
       {
         title:
           "Young Investigator Award, 2nd Place — Cardiovascular Council",
         year: 2023,
         note: "Dynamic ¹⁸F-flutemetamol PET kinetic modeling for ATTR-CA",
+        href: "/research/attr-parametric-pet",
       },
     ],
   },
@@ -747,6 +1023,18 @@ export function getPublicationById(id: string) {
 
 export function getResearchProjectBySlug(slug: string) {
   return researchProjects.find((p) => p.slug === slug);
+}
+
+export function getExperienceBySlug(slug: string) {
+  return experience.find((e) => e.slug === slug);
+}
+
+export function getRoleProfileBySlug(slug: string) {
+  return roleProfiles.find((r) => r.slug === slug);
+}
+
+export function roleProfileHref(slug: string) {
+  return `/roles/${slug}` as const;
 }
 
 export function getBlogPostBySlug(slug: string) {

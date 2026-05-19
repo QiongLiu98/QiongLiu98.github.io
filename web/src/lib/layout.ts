@@ -7,9 +7,9 @@ export const sectionYMedium = "py-10 md:py-20 lg:py-28";
 export const pageMainY = "py-12 md:py-20 lg:py-28";
 
 export const pageHeroOuter =
-  "border-b border-[var(--color-rule)] pt-24 pb-10 md:pt-44 md:pb-24";
+  "border-b border-[var(--color-rule)] pt-32 pb-10 md:pt-36 lg:pt-44 md:pb-24";
 export const detailHeroOuter =
-  "border-b border-[var(--color-rule)] pt-24 pb-10 md:pt-44 md:pb-20";
+  "border-b border-[var(--color-rule)] pt-32 pb-10 md:pt-36 lg:pt-44 md:pb-20";
 
 export const stackSm = "mt-4 md:mt-8";
 export const stackMd = "mt-6 md:mt-10";

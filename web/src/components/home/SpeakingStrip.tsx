@@ -12,7 +12,7 @@ export function SpeakingStrip() {
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4 md:mb-12 md:gap-6">
           <div>
             <div className="flex items-baseline gap-2 md:gap-3">
-              <span className="num num-tertiary text-xs">05</span>
+              <span className="num num-tertiary text-xs">06</span>
               <span className="label text-[var(--color-band-muted)]">
                 On Stage
               </span>

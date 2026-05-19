@@ -183,3 +183,36 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Role fit links — hover/focus tooltip on pointer devices */
+.role-fit-tooltip {
+  position: absolute;
+  left: 0;
+  z-index: 20;
+  bottom: calc(100% + 0.5rem);
+  max-width: min(18rem, 90vw);
+  border-radius: 2px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper);
+  padding: 0.5rem 0.625rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-ink-soft);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: translateY(4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group\/role:hover .role-fit-tooltip,
+  .group\/role:focus-within .role-fit-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

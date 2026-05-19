@@ -18,7 +18,7 @@ export function PublicationsPreview() {
         <div className="grid gap-8 md:gap-12 lg:grid-cols-[1fr_1.75fr] lg:items-start lg:gap-14">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <div className="flex items-baseline gap-2 md:gap-3">
-              <span className="num text-xs text-[var(--color-warm)]">03</span>
+              <span className="num text-xs text-[var(--color-warm)]">04</span>
               <span className="label">Publications</span>
             </div>
             <h2 className={displaySectionTitle}>

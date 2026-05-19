@@ -8,6 +8,7 @@ import { PublicationLinks } from "@/components/shared/PublicationLinks";
 import { getPublicationAuthors } from "@/lib/publications";
 import { getPublicationPrimaryUrl } from "@/lib/publications";
 import { contentShell, pageMainY, detailHeroOuter } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import {
   getPublicationById,
   getResearchProjectBySlug,
@@ -24,10 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getResearchProjectBySlug(slug);
   if (!project) return { title: "Research" };
-  return {
+  return createPageMetadata({
     title: project.title,
     description: project.subtitle,
-  };
+    path: `/research/${slug}`,
+  });
 }
 
 export default async function ResearchDetailPage({ params }: Props) {

@@ -4,17 +4,20 @@ import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { personalPhotos, site } from "@/content/site";
 import { contentShell, pageMainY } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  description: "Get in touch with Qiong Liu, Ph.D.",
-};
+  description:
+    "Contact Qiong Liu, Ph.D. — AI scientist in deep learning and image analysis. Open to ML, computer vision, and imaging roles. Email, LinkedIn, and Google Scholar.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        number="06"
+        number="07"
         label="Contact"
         title={
           <>
@@ -23,7 +26,7 @@ export default function ContactPage() {
             <span className="font-display-italic">connect.</span>
           </>
         }
-        description="Open to research collaborations, industry roles, and conversations about cardiovascular imaging, PET, and machine learning."
+        description={site.openTo}
       />
 
       <div className={`${contentShell} ${pageMainY}`}>

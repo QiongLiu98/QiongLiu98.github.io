@@ -16,7 +16,7 @@ export function FeaturedWork() {
         <div className="flex items-end justify-between gap-4 border-b border-[var(--color-rule)] pb-6 md:gap-8 md:pb-10">
           <div>
             <div className="flex items-baseline gap-2 md:gap-3">
-              <span className="num text-xs text-[var(--color-warm)]">02</span>
+              <span className="num text-xs text-[var(--color-warm)]">03</span>
               <span className="label">Selected Work</span>
             </div>
             <h2 className="font-display mt-4 text-3xl text-[var(--color-ink)] md:mt-6 md:text-7xl">

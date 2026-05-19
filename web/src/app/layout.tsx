@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
+import { siteKeywords } from "@/lib/seo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FloatingContactBar } from "@/components/layout/FloatingContactBar";
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}, ${site.credentials}`,
   },
   description: site.tagline,
+  keywords: [...siteKeywords],
   openGraph: {
     title: `${site.name}, ${site.credentials} — ${site.title}`,
     description: site.tagline,

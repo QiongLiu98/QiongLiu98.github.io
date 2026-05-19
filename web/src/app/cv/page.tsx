@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
+import { experienceHref } from "@/lib/experience-display";
 import { contentShell, pageMainY } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import {
   awards,
   education,
@@ -12,16 +15,18 @@ import {
   site,
 } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "CV",
-  description: "Curriculum vitae for Qiong Liu, Ph.D.",
-};
+  description:
+    "Curriculum vitae — experience, education, publications, patents, and awards for Qiong Liu, Ph.D., AI scientist in deep learning and quantitative imaging.",
+  path: "/cv",
+});
 
 export default function CVPage() {
   return (
     <>
       <PageHero
-        number="04"
+        number="05"
         label="Curriculum Vitae"
         title={
           <>
@@ -61,13 +66,18 @@ export default function CVPage() {
               <ol className="mt-8 space-y-10">
                 {experience.map((job) => (
                   <li
-                    key={`${job.org}-${job.period}`}
+                    key={job.slug}
                     className="grid gap-4 border-b border-[var(--color-rule-soft)] pb-10 last:border-b-0"
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <div>
                         <h3 className="font-serif text-xl text-[var(--color-ink)]">
-                          {job.role}
+                          <Link
+                            href={experienceHref(job.slug)}
+                            className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)]"
+                          >
+                            {job.role}
+                          </Link>
                         </h3>
                         <p className="mt-1 text-[var(--color-warm)]">
                           {job.org}
@@ -90,12 +100,52 @@ export default function CVPage() {
                         </li>
                       ))}
                     </ul>
+                    {job.teaching && job.teaching.length > 0 && (
+                      <div className="mt-4 border-l-2 border-[var(--color-rule)] pl-4">
+                        <p className="label text-[10px]">Teaching &amp; mentoring</p>
+                        <ul className="mt-2 space-y-3">
+                          {job.teaching.map((item) => (
+                            <li key={item.title}>
+                              <p className="text-sm font-medium text-[var(--color-ink)]">
+                                {item.title}
+                                {item.period ? (
+                                  <span className="num ml-2 font-normal text-[var(--color-muted)]">
+                                    {item.period}
+                                  </span>
+                                ) : null}
+                              </p>
+                              {item.role && (
+                                <p className="text-xs text-[var(--color-warm)]">
+                                  {item.role}
+                                </p>
+                              )}
+                              <ul className="mt-1 space-y-1">
+                                {item.details.map((d) => (
+                                  <li
+                                    key={d.slice(0, 40)}
+                                    className="text-xs leading-relaxed text-[var(--color-ink-soft)]"
+                                  >
+                                    {d}
+                                  </li>
+                                ))}
+                              </ul>
+                            </li>
+                          ))}
+                        </ul>
+                        <Link
+                          href={experienceHref(job.slug)}
+                          className="mt-2 inline-block text-xs text-[var(--color-muted)] underline underline-offset-2 hover:text-[var(--color-warm)]"
+                        >
+                          Full role page →
+                        </Link>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ol>
             </section>
 
-            <section>
+            <section id="education">
               <h2 className="label border-b border-[var(--color-rule)] pb-4">
                 Education
               </h2>
@@ -111,7 +161,16 @@ export default function CVPage() {
                       </time>
                     </div>
                     <p className="mt-2 text-[var(--color-ink-soft)]">
-                      {edu.degree}
+                      {"href" in edu && edu.href ? (
+                        <Link
+                          href={edu.href}
+                          className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)]"
+                        >
+                          {edu.degree}
+                        </Link>
+                      ) : (
+                        edu.degree
+                      )}
                     </p>
                     {edu.detail && (
                       <p className="mt-2 text-sm italic text-[var(--color-muted)]">
@@ -129,17 +188,28 @@ export default function CVPage() {
             </section>
 
             <section>
-              <h2 className="label border-b border-[var(--color-rule)] pb-4">
-                Patents
-              </h2>
+              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--color-rule)] pb-4">
+                <h2 className="label">Patents</h2>
+                <Link
+                  href="/patents"
+                  className="text-xs text-[var(--color-muted)] underline underline-offset-2 hover:text-[var(--color-warm)]"
+                >
+                  Full patents page →
+                </Link>
+              </div>
               <ul className="mt-8 space-y-6">
                 {patents.map((pat) => (
                   <li
-                    key={pat.title}
+                    key={pat.slug}
                     className="border-l-2 border-[var(--color-warm)] pl-5"
                   >
                     <p className="font-serif text-lg text-[var(--color-ink)]">
-                      {pat.title}
+                      <Link
+                        href={`/patents#${pat.slug}`}
+                        className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)]"
+                      >
+                        {pat.title}
+                      </Link>
                     </p>
                     <p className="mt-1 text-sm text-[var(--color-muted)]">
                       {pat.role} · {pat.status} · {pat.year}
@@ -152,7 +222,7 @@ export default function CVPage() {
               </ul>
             </section>
 
-            <section>
+            <section id="awards" className="scroll-mt-24">
               <h2 className="label border-b border-[var(--color-rule)] pb-4">
                 Awards
               </h2>
@@ -172,10 +242,19 @@ export default function CVPage() {
                             {item.year}
                           </span>
                           <div>
-                            <p className="text-sm text-[var(--color-ink-soft)]">
-                              {item.title}
-                            </p>
-                            {"note" in item && item.note && (
+                            {item.href ? (
+                              <Link
+                                href={item.href}
+                                className="text-sm text-[var(--color-ink-soft)] underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)]"
+                              >
+                                {item.title}
+                              </Link>
+                            ) : (
+                              <p className="text-sm text-[var(--color-ink-soft)]">
+                                {item.title}
+                              </p>
+                            )}
+                            {item.note && (
                               <p className="mt-1 text-xs italic text-[var(--color-muted)]">
                                 {item.note}
                               </p>

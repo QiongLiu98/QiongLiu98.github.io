@@ -3,12 +3,14 @@ import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { blogPosts, formatBlogDate } from "@/content/site";
 import { contentShell, pageMainY } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Blog",
   description:
-    "Notes on cardiac PET imaging, deep learning, and translating research into clinical practice.",
-};
+    "Notes on cardiac PET imaging, deep learning, and translating research into clinical practice — Qiong Liu, Ph.D.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const sorted = [...blogPosts].sort(
@@ -18,7 +20,7 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
-        number="05"
+        number="06"
         label="Blog"
         title={
           <>

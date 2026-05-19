@@ -1,12 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { contentShell } from "@/lib/layout";
+import {
+  experienceHref,
+  experiencePeriodLabel,
+  getHeroExperience,
+} from "@/lib/experience-display";
 import { personalPhotos, site } from "@/content/site";
+
+const heroExperience = getHeroExperience(3);
 
 export function HomeHero() {
   const currentYear = new Date().getFullYear();
   return (
-    <section className="theme-mesh relative overflow-hidden pt-24 pb-12 md:pt-44 md:pb-32">
+    <section className="theme-mesh relative overflow-hidden pt-32 pb-12 md:pt-36 lg:pt-44 md:pb-32">
       <div className={contentShell}>
         <div className="grid items-start gap-6 sm:items-end md:gap-12 lg:grid-cols-[1.7fr_1fr] lg:gap-16">
           <div className="fade-in min-w-0">
@@ -14,7 +21,7 @@ export function HomeHero() {
               <span className="num num-highlight text-xs">
                 {currentYear}
               </span>
-              <span className="label">Cardiovascular AI · Cardiac PET</span>
+              <span className="label">{site.headline}</span>
             </div>
 
             <h1 className="font-display mt-4 text-[clamp(2.25rem,8.5vw,9rem)] leading-[0.9] text-[var(--color-ink)] md:mt-8">
@@ -67,28 +74,50 @@ export function HomeHero() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[220px] fade-in-delay-2 sm:max-w-[280px] md:ml-auto md:max-w-[380px] lg:max-w-none">
-            <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-[var(--color-rule)] bg-[var(--color-paper-warm)] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_40px_-28px_rgba(0,0,0,0.22)]">
-                <Image
-                  src={personalPhotos.headshot.src}
-                  alt={personalPhotos.headshot.alt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 420px"
-                  priority
-                />
-              </div>
-              <div className="absolute -bottom-2 left-2 right-2 flex items-baseline justify-between bg-[var(--color-paper)] px-2 py-1.5 md:-bottom-3 md:left-3 md:right-3 md:px-3 md:py-2">
-                <span className="num text-[9px] text-[var(--color-muted-soft)] md:text-[10px]">
-                  PLATE I
-                </span>
-                <span className="font-serif text-xs italic text-[var(--color-muted)] md:text-sm">
-                  Qiong Liu, Ph.D.
-                </span>
-              </div>
+          <figure className="fade-in-delay-2 relative mx-auto w-full max-w-[240px] border border-[var(--color-rule)] bg-[var(--color-surface)] sm:max-w-[280px] md:ml-auto md:max-w-[320px] lg:max-w-[360px]">
+            <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-paper-warm)] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_40px_-28px_rgba(0,0,0,0.22)]">
+              <Image
+                src={personalPhotos.headshot.src}
+                alt={personalPhotos.headshot.alt}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 280px, 360px"
+                priority
+              />
             </div>
-          </div>
+            <figcaption className="border-t border-[var(--color-rule)] p-3 md:p-4">
+              <p className="font-serif text-xs italic text-[var(--color-muted)] md:text-sm">
+                Qiong Liu, Ph.D. — {site.title}
+              </p>
+              <ul className="mt-2.5 space-y-2 md:mt-3 md:space-y-2.5">
+                {heroExperience.map((job) => (
+                  <li key={job.slug}>
+                    <Link
+                      href={experienceHref(job.slug)}
+                      className="group block text-[11px] leading-snug text-[var(--color-ink-soft)] transition-colors hover:text-[var(--color-warm)] md:text-xs"
+                    >
+                      <span className="num text-[var(--color-warm)] group-hover:text-[var(--color-warm)]">
+                        {experiencePeriodLabel(job.period)}
+                      </span>{" "}
+                      <span className="group-hover:underline group-hover:decoration-[var(--color-warm)] group-hover:underline-offset-2">
+                        {job.role}
+                      </span>
+                      <span className="text-[var(--color-muted)] group-hover:text-[var(--color-ink-soft)]">
+                        {" "}
+                        · {job.org}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/cv"
+                className="mt-2.5 inline-block text-[10px] text-[var(--color-muted)] underline underline-offset-2 hover:text-[var(--color-warm)] md:mt-3 md:text-[11px]"
+              >
+                Full CV →
+              </Link>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>

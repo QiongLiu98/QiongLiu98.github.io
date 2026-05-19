@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   contentShell,
   displaySectionTitle,
@@ -13,7 +14,7 @@ export function RecognitionSection() {
         <div className="grid gap-8 md:gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
           <div>
             <div className="flex items-baseline gap-2 md:gap-3">
-              <span className="num text-xs text-[var(--color-warm)]">04</span>
+              <span className="num text-xs text-[var(--color-warm)]">06</span>
               <span className="label">Recognition</span>
             </div>
             <h2 className={displaySectionTitle}>
@@ -36,10 +37,19 @@ export function RecognitionSection() {
                           {item.year}
                         </span>
                         <div>
-                          <p className="font-serif text-base leading-snug text-[var(--color-ink)] md:text-lg">
-                            {item.title}
-                          </p>
-                          {"note" in item && item.note && (
+                          {item.href ? (
+                            <Link
+                              href={item.href}
+                              className="font-serif text-base leading-snug text-[var(--color-ink)] underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)] md:text-lg"
+                            >
+                              {item.title}
+                            </Link>
+                          ) : (
+                            <p className="font-serif text-base leading-snug text-[var(--color-ink)] md:text-lg">
+                              {item.title}
+                            </p>
+                          )}
+                          {item.note && (
                             <p className="mt-1 text-sm italic text-[var(--color-muted)]">
                               {item.note}
                             </p>
@@ -65,7 +75,12 @@ export function RecognitionSection() {
                 />
               </div>
               <figcaption className="mt-3 font-serif text-sm italic text-[var(--color-muted)] md:mt-4">
-                {personalPhotos.award.caption}
+                <Link
+                  href="/blog/snmmi-2025-young-investigator"
+                  className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-warm)] hover:decoration-[var(--color-warm)]"
+                >
+                  {personalPhotos.award.caption}
+                </Link>
               </figcaption>
             </figure>
           </div>

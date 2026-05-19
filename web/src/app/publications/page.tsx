@@ -3,17 +3,19 @@ import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { PublicationEntry } from "@/components/shared/PublicationEntry";
 import { contentShell, pageMainY } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import {
   allPublications,
   conferencePresentations,
   site,
 } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Publications",
   description:
-    "Peer-reviewed publications and conference presentations by Qiong Liu, Ph.D.",
-};
+    "Peer-reviewed publications and conference presentations in cardiac PET, medical imaging, and machine learning — Qiong Liu, Ph.D.",
+  path: "/publications",
+});
 
 function groupByYear<T extends { year: number }>(items: T[]): Map<number, T[]> {
   const map = new Map<number, T[]>();

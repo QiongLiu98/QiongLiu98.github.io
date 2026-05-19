@@ -1,8 +1,10 @@
+import Link from "next/link";
 import {
   contentShell,
   displaySectionTitle,
   sectionYMedium,
 } from "@/lib/layout";
+import { RichText } from "@/components/shared/RichText";
 import { site, stats } from "@/content/site";
 import { StatIcon } from "@/components/home/StatIcon";
 
@@ -33,12 +35,9 @@ export function CurrentlySection() {
               className="mt-6 grid grid-cols-2 gap-3 md:mt-12 md:gap-4"
               aria-label="Career highlights"
             >
-              {stats.map((s, i) => (
-                <li key={s.label}>
-                  <article
-                    aria-label={`${s.value} ${s.label}`}
-                    className="flex h-full flex-col rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)]/90 p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] md:p-4"
-                  >
+              {stats.map((s, i) => {
+                const inner = (
+                  <>
                     <div
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-12 md:w-12 ${iconAccent[i % iconAccent.length]}`}
                       aria-hidden
@@ -51,9 +50,32 @@ export function CurrentlySection() {
                     <p className="mt-2 text-sm font-medium leading-snug text-[var(--color-ink)] md:mt-2.5 md:text-[0.9375rem]">
                       {s.label}
                     </p>
-                  </article>
-                </li>
-              ))}
+                  </>
+                );
+                const className =
+                  "flex h-full flex-col rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)]/90 p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] md:p-4";
+
+                return (
+                  <li key={s.label}>
+                    {s.href ? (
+                      <Link
+                        href={s.href}
+                        aria-label={`${s.value} ${s.label}`}
+                        className={`${className} transition-colors hover:border-[var(--color-warm)]`}
+                      >
+                        {inner}
+                      </Link>
+                    ) : (
+                      <article
+                        aria-label={`${s.value} ${s.label}`}
+                        className={className}
+                      >
+                        {inner}
+                      </article>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -68,7 +90,7 @@ export function CurrentlySection() {
                       : ""
                   }
                 >
-                  {paragraph}
+                  <RichText segments={paragraph} />
                 </p>
               ))}
             </div>

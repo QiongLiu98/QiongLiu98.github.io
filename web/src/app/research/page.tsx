@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
+import { createPageMetadata } from "@/lib/seo";
 import { researchProjects } from "@/content/site";
 import {
   contentShell,
@@ -11,11 +12,12 @@ import {
   serifLead,
 } from "@/lib/layout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Research",
   description:
-    "Selected research in cardiac PET imaging, motion correction, and deep learning denoising.",
-};
+    "Selected research in deep learning for dynamic imaging — motion correction, denoising, and quantitative analysis — with clinical cardiac PET as the proving ground. Qiong Liu, Ph.D.",
+  path: "/research",
+});
 
 export default function ResearchPage() {
   return (
@@ -30,7 +32,7 @@ export default function ResearchPage() {
             <span className="font-display-italic">the field.</span>
           </>
         }
-        description="Four signature projects spanning clinical cardiovascular PET, physics-informed deep learning, and motion correction — from Yale PET Center to Canon Medical Research USA."
+        description="Four signature projects in spatiotemporal image analysis — physics-informed deep learning, motion correction, and quantitative reconstruction — developed at Yale PET Center and Canon Medical Research USA."
       />
 
       <div className={`${contentShell} ${pageMainY}`}>

@@ -13,7 +13,7 @@ export function ContactCallout() {
     <section className={sectionY}>
       <div className={contentShell}>
         <div className="flex items-baseline gap-2 md:gap-3">
-          <span className="num text-xs text-[var(--color-warm)]">06</span>
+          <span className="num text-xs text-[var(--color-warm)]">08</span>
           <span className="label">Get in touch</span>
         </div>
         <h2 className={`${displayPageTitle} max-w-4xl`}>
@@ -21,8 +21,7 @@ export function ContactCallout() {
           <span className="font-display-italic">working on?</span>
         </h2>
         <p className={`${serifLead} ${stackMd} max-w-2xl`}>
-          I&rsquo;m open to research collaborations and new roles in
-          cardiovascular AI, medical imaging, and machine learning.
+          {site.openTo}
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-12 md:gap-x-8 md:gap-y-4">
           <a
