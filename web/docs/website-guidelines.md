@@ -2,7 +2,7 @@
 
 This site follows evidence-based practices for PhD / ML researcher portfolios. The full research synthesis lives at:
 
-**[contextResources/research/reportWebsite.md](../../contextResources/research/reportWebsite.md)**
+**Local only:** `contextResources/research/reportWebsite.md` (gitignored — not on GitHub)
 
 Use that document when making structural or content decisions. This file summarizes how the codebase implements it.
 

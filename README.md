@@ -6,12 +6,8 @@ Professional portfolio site for Qiong Liu, Ph.D.
 
 ```
 qiongWebsite/
-├── contextResources/          # Source material for site content
-│   ├── Qiong_Liu_CV_update/   # LaTeX CV variants (multiple career focuses)
-│   ├── papers/                # Manuscripts and published PDFs
-│   └── extraResources/        # LinkedIn export, etc.
+├── contextResources/          # Local only (gitignored) — manuscripts, paper PDFs, CV LaTeX
 ├── web/                       # Next.js site
-│   ├── public/papers/         # PDFs served on the site
 │   └── src/content/site.ts    # Edit site copy here
 └── README.md
 ```
@@ -29,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ### Updating content
 
 1. Edit `web/src/content/site.ts` for bio, experience, publications, highlights, awards.
-2. Add PDFs to `web/public/papers/` and reference them in publication entries (`pdf: "/papers/..."`).
+2. Publication links use DOI and Google Scholar — paper PDFs stay in local `contextResources/papers/` (not published).
 3. When CV or papers change in `contextResources/`, sync the relevant fields into `site.ts`.
 
 ### Deploy

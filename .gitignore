@@ -1,6 +1,13 @@
 .DS_Store
 *.pem
 
+# Private source material (manuscripts, paper PDFs, CV LaTeX, originals) — local only
+contextResources/
+contextResources.zip
+
+# Paper PDFs are not published on the site (use DOI / Scholar links)
+web/public/papers/
+
 # Next.js app (web/)
 web/node_modules/
 web/.pnp

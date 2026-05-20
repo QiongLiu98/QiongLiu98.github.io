@@ -743,7 +743,6 @@ export const allPublications: Publication[] = [
     role: "first",
     doi: "10.1088/1361-6560/ac783d",
     url: "https://doi.org/10.1088/1361-6560/ac783d",
-    pdf: "/papers/liu-2022-personalized-pet-denoising.pdf",
   },
   {
     citation:

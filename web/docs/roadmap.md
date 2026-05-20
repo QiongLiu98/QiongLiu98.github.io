@@ -1,6 +1,6 @@
 # Site roadmap
 
-Prioritized from [reportWebsite.md](../../contextResources/research/reportWebsite.md) and implementation status.
+Prioritized from local `contextResources/research/reportWebsite.md` (gitignored) and implementation status.
 
 ## Done
 

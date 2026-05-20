@@ -12,7 +12,7 @@ Run commands from **`web/`** (not repo root).
 
 - **[docs/website-guidelines.md](docs/website-guidelines.md)** — IA, design tokens, content rules, SEO
 - **[docs/roadmap.md](docs/roadmap.md)** — what's done vs planned
-- **[../contextResources/research/reportWebsite.md](../contextResources/research/reportWebsite.md)** — full research-backed rationale
+- **Local only:** `../contextResources/` (gitignored) — manuscripts and paper PDFs are not in the repo. Research rationale: `../contextResources/research/reportWebsite.md` when present locally.
 
 ## Key paths
 
