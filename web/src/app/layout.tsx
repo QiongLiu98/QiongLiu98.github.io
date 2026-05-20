@@ -23,7 +23,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const baseUrl = "https://qiongliu.work";
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://qiongliu98.github.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

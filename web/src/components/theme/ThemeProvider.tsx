@@ -78,7 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const refreshCustomThemes = useCallback(async () => {
     try {
-      const res = await fetch("/api/custom-themes");
+      const res = await fetch("/custom-themes.json");
       if (!res.ok) return;
       const data = (await res.json()) as { themes: CustomTheme[] };
       setCustomThemes(data.themes ?? []);

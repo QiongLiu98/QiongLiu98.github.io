@@ -15,13 +15,9 @@ type CustomThemeEditorProps = {
 };
 
 export function CustomThemeEditor({ onSaved }: CustomThemeEditorProps) {
-  const { previewCustomColors, draftColors, setDraftColors, setTheme, refreshCustomThemes } = useTheme();
+  const { previewCustomColors, draftColors, setDraftColors } = useTheme();
   const [activeField, setActiveField] =
     useState<ThemeColorFieldKey>("paper");
-  const [saveName, setSaveName] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!draftColors) {
@@ -39,37 +35,6 @@ export function CustomThemeEditor({ onSaved }: CustomThemeEditorProps) {
     },
     [colors, previewCustomColors, setDraftColors],
   );
-
-  const handleSave = async () => {
-    setError(null);
-    setMessage(null);
-    if (!saveName.trim()) {
-      setError("Enter a name for this style");
-      return;
-    }
-    setSaving(true);
-    try {
-      const res = await fetch("/api/custom-themes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ label: saveName.trim(), colors }),
-      });
-      const data = (await res.json()) as {
-        theme?: { id: string; label: string };
-        error?: string;
-      };
-      if (!res.ok) throw new Error(data.error ?? "Save failed");
-      setMessage(`Saved “${data.theme?.label ?? saveName}” to the project`);
-      setSaveName("");
-      await refreshCustomThemes();
-      if (data.theme?.id) setTheme(data.theme.id);
-      onSaved?.();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Save failed");
-    } finally {
-      setSaving(false);
-    }
-  };
 
   const activeMeta = THEME_COLOR_FIELDS.find((f) => f.key === activeField)!;
 
@@ -123,37 +88,10 @@ export function CustomThemeEditor({ onSaved }: CustomThemeEditorProps) {
         onChange={(hex) => updateColor(activeField, hex)}
       />
 
-      <div className="space-y-2 border-t border-[var(--color-rule-soft)] pt-3">
-        <label className="block">
-          <span className="label mb-1 block">Save style to project</span>
-          <input
-            type="text"
-            value={saveName}
-            onChange={(e) => setSaveName(e.target.value)}
-            placeholder="e.g. Conference poster"
-            className="w-full rounded-sm border border-[var(--color-rule)] bg-[var(--color-paper)] px-2 py-2 text-sm text-[var(--color-ink)]"
-          />
-        </label>
-        <button
-          type="button"
-          disabled={saving}
-          onClick={handleSave}
-          className="w-full rounded-sm bg-[var(--color-ink)] px-3 py-2 text-xs font-medium text-[var(--color-paper)] transition-colors hover:bg-[var(--color-warm)] disabled:opacity-50"
-        >
-          {saving ? "Saving…" : "Save to custom-themes.json"}
-        </button>
-        {message && (
-          <p className="text-[11px] text-[var(--color-highlight)]">{message}</p>
-        )}
-        {error && (
-          <p className="text-[11px] text-[var(--color-warm)]">{error}</p>
-        )}
-        <p className="text-[10px] leading-snug text-[var(--color-muted)]">
-          Writes to{" "}
-          <code className="num text-[10px]">web/src/content/custom-themes.json</code>{" "}
-          (dev server). Commit the file to keep it in git.
-        </p>
-      </div>
+      <p className="border-t border-[var(--color-rule-soft)] pt-3 text-[10px] leading-snug text-[var(--color-muted)]">
+        Preview only on the published site. Built-in themes are remembered in this
+        browser.
+      </p>
     </div>
   );
 }
